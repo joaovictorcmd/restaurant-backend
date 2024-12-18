@@ -1,14 +1,22 @@
 import { Router } from "express";
+import multer from "multer";
 
 import { CreateUserController } from "./controllers/user/CreateUserController";
 import { AuthUserController } from "./controllers/user/AuthUserController";
 import { DetailUserController } from "./controllers/user/DetailUserController";
 
-import { isAuthenticatedMiddleware } from "./middlewares/isAuthenticatedMiddleware";
 import { CreateCategoryController } from "./controllers/category/CreateCategoryController";
 import { ListCategoryController } from "./controllers/category/ListCategoryController";
 
+import { CreateProductController } from "./controllers/product/CreateProductController";
+
+import { isAuthenticatedMiddleware } from "./middlewares/isAuthenticatedMiddleware";
+
+import uploadConfig from "./config/multer";
+
 const router = Router();
+
+const upload = multer(uploadConfig.upload("./temp"));
 
 // USER ROUTES
 router.post("/users", new CreateUserController().handle);
@@ -25,6 +33,14 @@ router.get(
   "/category",
   isAuthenticatedMiddleware,
   new ListCategoryController().handle
+);
+
+// PRODUCT ROUTES
+router.post(
+  "/product",
+  isAuthenticatedMiddleware,
+  upload.single("file"),
+  new CreateProductController().handle
 );
 
 export { router };
