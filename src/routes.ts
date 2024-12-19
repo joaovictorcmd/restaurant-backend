@@ -9,6 +9,7 @@ import { CreateCategoryController } from "./controllers/category/CreateCategoryC
 import { ListCategoryController } from "./controllers/category/ListCategoryController";
 
 import { CreateProductController } from "./controllers/product/CreateProductController";
+import { ListProductsByCategoryController } from "./controllers/product/ListProductsByCategoryController";
 
 import { isAuthenticatedMiddleware } from "./middlewares/isAuthenticatedMiddleware";
 
@@ -41,6 +42,11 @@ router.post(
   isAuthenticatedMiddleware,
   upload.single("file"),
   new CreateProductController().handle
+);
+router.get(
+  "/products",
+  isAuthenticatedMiddleware,
+  new ListProductsByCategoryController().handle
 );
 
 export { router };
