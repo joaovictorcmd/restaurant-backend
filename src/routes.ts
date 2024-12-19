@@ -14,6 +14,8 @@ import { ListProductsByCategoryController } from "./controllers/product/ListProd
 import { isAuthenticatedMiddleware } from "./middlewares/isAuthenticatedMiddleware";
 
 import uploadConfig from "./config/multer";
+import { CreateOrderController } from "./controllers/order/CreateOrderController";
+import { RemoveOrderController } from "./controllers/order/RemoveOrderController";
 
 const router = Router();
 
@@ -47,6 +49,18 @@ router.get(
   "/products",
   isAuthenticatedMiddleware,
   new ListProductsByCategoryController().handle
+);
+
+// ORDER ROUTES
+router.post(
+  "/order",
+  isAuthenticatedMiddleware,
+  new CreateOrderController().handle
+);
+router.delete(
+  "/order",
+  isAuthenticatedMiddleware,
+  new RemoveOrderController().handle
 );
 
 export { router };
