@@ -21,6 +21,7 @@ import { isAuthenticatedMiddleware } from "./middlewares/isAuthenticatedMiddlewa
 
 import uploadConfig from "./config/multer";
 import { ListOrdersController } from "./controllers/order/ListOrdersController";
+import { DetailOrderController } from "./controllers/order/DetailOrderController";
 
 const router = Router();
 
@@ -86,6 +87,11 @@ router.get(
   "/orders",
   isAuthenticatedMiddleware,
   new ListOrdersController().handle
+);
+router.get(
+  "/order/detail",
+  isAuthenticatedMiddleware,
+  new DetailOrderController().handle
 );
 
 export { router };
