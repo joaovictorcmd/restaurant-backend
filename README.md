@@ -2,7 +2,7 @@
 
 ## Description
 
-This is the backend for a system to manage orders in a pizzeria.
+This is the backend for a system to manage orders in a restaurant.
 
 The goal is to optimize the activities of waiters and the kitchen, making the service process more efficient and organized.
 
