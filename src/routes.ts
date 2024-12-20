@@ -20,6 +20,7 @@ import { SendOrderController } from "./controllers/order/SendOrderController";
 import { isAuthenticatedMiddleware } from "./middlewares/isAuthenticatedMiddleware";
 
 import uploadConfig from "./config/multer";
+import { ListOrdersController } from "./controllers/order/ListOrdersController";
 
 const router = Router();
 
@@ -80,6 +81,11 @@ router.put(
   "/order/send",
   isAuthenticatedMiddleware,
   new SendOrderController().handle
+);
+router.get(
+  "/orders",
+  isAuthenticatedMiddleware,
+  new ListOrdersController().handle
 );
 
 export { router };
