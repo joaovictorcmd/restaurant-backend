@@ -16,12 +16,13 @@ import { RemoveOrderController } from "./controllers/order/RemoveOrderController
 import { AddItemController } from "./controllers/order/AddItemController";
 import { RemoveItemController } from "./controllers/order/RemoveItemController";
 import { SendOrderController } from "./controllers/order/SendOrderController";
+import { ListOrdersController } from "./controllers/order/ListOrdersController";
+import { DetailOrderController } from "./controllers/order/DetailOrderController";
+import { FinishOrderController } from "./controllers/order/FinishOrderController";
 
 import { isAuthenticatedMiddleware } from "./middlewares/isAuthenticatedMiddleware";
 
 import uploadConfig from "./config/multer";
-import { ListOrdersController } from "./controllers/order/ListOrdersController";
-import { DetailOrderController } from "./controllers/order/DetailOrderController";
 
 const router = Router();
 
@@ -92,6 +93,11 @@ router.get(
   "/order/detail",
   isAuthenticatedMiddleware,
   new DetailOrderController().handle
+);
+router.put(
+  "/order/finish",
+  isAuthenticatedMiddleware,
+  new FinishOrderController().handle
 );
 
 export { router };
