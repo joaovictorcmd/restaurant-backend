@@ -22,6 +22,6 @@ app.use(router);
 app.use("/files", express.static(path.resolve(__dirname, "..", "temp")));
 app.use(errorHandlerMiddleware);
 
-app.listen(3333, () => console.log("Servidor Online"));
+app.listen(process.env.PORT, () => console.log("Servidor Online"));
 
 export { app };
