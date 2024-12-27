@@ -49,7 +49,6 @@ router.get(
 router.post(
   "/product",
   isAuthenticatedMiddleware,
-  upload.single("file"),
   new CreateProductController().handle
 );
 router.get(
